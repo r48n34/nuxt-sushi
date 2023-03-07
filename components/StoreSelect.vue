@@ -11,7 +11,9 @@ const value = ref(null)
 const singleStore = useSingleStoreDataStore()
 const allStoreData = useAllStoreDataStore()
 
-allStoreData.getAllStoreData();
+onMounted(() => {
+    allStoreData.getAllStoreData();
+})
 
 const storeList = computed( () => allStoreData 
     ? allStoreData.allStoreData.map( v => {
