@@ -9,8 +9,7 @@ import { useSingleStoreDataStore } from '~~/store/singleStoreDataStore';
 const data = useSingleStoreDataStore()
 const allStoreData = useAllStoreDataStore()
 
-allStoreData.getAllStoreData();
-watchEffect(() => console.log(data.storeData?.allStoreData))
+// watchEffect(() => console.log(data.storeData?.allStoreData))
 
 const callInfo = reactive<{myTicket : number | null, timeToCall: number | null}>({
     myTicket: null,
@@ -30,14 +29,15 @@ onMounted(() => {
         data.setLoading();
         data.getStoreData(storeID)
     }
-  
+
+    allStoreData.getAllStoreData();
 })
 
-watchEffect(() => {
-    if(data.initLoading){
+// watchEffect(() => {
+//     if(data.initLoading){
      
-    }
-})
+//     }
+// })
 
 </script>
 
