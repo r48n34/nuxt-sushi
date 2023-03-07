@@ -5,7 +5,13 @@ export default defineNuxtConfig({
     typescript: {
         shim: false
     },
-    modules: ['@pinia/nuxt', '@nuxtjs/color-mode', '@vueuse/nuxt', '@sidebase/nuxt-session'],
+    modules: [
+        '@pinia/nuxt',
+        '@nuxtjs/color-mode',
+        '@vueuse/nuxt',
+        '@sidebase/nuxt-session',
+        '@kevinmarrec/nuxt-pwa'
+    ],
     build: {
         transpile:
           process.env.NODE_ENV === 'production'
@@ -24,5 +30,5 @@ export default defineNuxtConfig({
               ? ['naive-ui', 'vueuc', 'date-fns-tz/esm/formatInTimeZone']
               : []
         }
-    }
+    },
 })
