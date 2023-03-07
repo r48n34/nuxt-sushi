@@ -13,7 +13,7 @@ onMounted(() => {
     allStoreData.getAllStoreData();
 })
 
-const storeList = computed( () => allStoreData 
+const storeList = computed( () => allStoreData && !!allStoreData.allStoreData
     ? allStoreData.allStoreData.map( v => {
         return {
             label: v.name,
