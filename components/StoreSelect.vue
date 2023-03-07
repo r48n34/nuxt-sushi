@@ -25,7 +25,7 @@ const storeList = computed( () => allStoreData
 
 
 watchEffect(async () => {  
-    if(!value.value){
+    if(!value.value || value.value === -1){
         return
     }
 
