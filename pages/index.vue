@@ -72,13 +72,17 @@ onMounted(() => {
             <n-grid x-gap="12" :cols="2">
                 <n-gi class="grid-items">
                     <n-statistic label="Minutes">
+                        <NH2 style="font-size: 3rem;">
                         {{ data.storeData.allStoreData.wait }}
+                        </NH2>
                     </n-statistic>
                 </n-gi>
             
                 <n-gi class="grid-items">
-                    <n-statistic label="Queue">
+                    <n-statistic label="Queue wait">
+                        <NH2 style="font-size: 3rem;">
                         {{ data.storeData.allStoreData.waitingGroup }}
+                    </NH2>
                     </n-statistic>             
                 </n-gi>
             </n-grid>
