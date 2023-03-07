@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { darkTheme, NConfigProvider, NDivider, NStatistic, NModal, NCard, NSpin } from 'naive-ui'
-import { NGrid, NGi, NH2 } from 'naive-ui'
+import { NGrid, NGi, NH2, NH4 } from 'naive-ui'
 import { useSingleStoreDataStore } from '~~/store/singleStoreDataStore';
 
 const data = useSingleStoreDataStore()
@@ -62,6 +62,14 @@ onMounted(() => {
     </n-modal>
 
     <div>
+
+        <template v-if="!data.storeData">
+            <div style="display: flex; justify-content: center; align-items: center; height: 80vh;">
+                <n-h4>
+                    Please select a store from the top right selector.
+                </n-h4>
+            </div>
+        </template>
 
         <template v-if="data.storeData">
 

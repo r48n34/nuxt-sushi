@@ -3,8 +3,6 @@ import { getSingleStoreQueue, getAllStorewaitInfo } from "~~/services/sushiServi
 
 export default defineEventHandler( async (event) => {
     const query = getQuery(event)
-
-    console.log(query);
     
     try{
         
@@ -54,7 +52,7 @@ export default defineEventHandler( async (event) => {
        
 
     }
-    catch(err){
+    catch(err: any){
         console.log(err)
         return { status: false, data: { errorMsg: err } };
       

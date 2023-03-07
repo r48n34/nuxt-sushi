@@ -30,6 +30,7 @@ export const useSingleStoreDataStore = defineStore('singleStoreDataStore', () =>
         } 
         catch (error) {
             console.log(error);
+            localStorage.removeItem("storeID")
         }
 
         lastUpdate.value = new Date()
