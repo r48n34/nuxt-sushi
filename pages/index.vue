@@ -1,15 +1,10 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import { darkTheme, NConfigProvider, NDivider, NStatistic, NModal, NCard, NSpin } from 'naive-ui'
 import { NGrid, NGi, NH2 } from 'naive-ui'
-
-import { useAllStoreDataStore } from '~~/store/allStoreDataStore';
 import { useSingleStoreDataStore } from '~~/store/singleStoreDataStore';
 
 const data = useSingleStoreDataStore()
-const allStoreData = useAllStoreDataStore()
-
-// watchEffect(() => console.log(data.storeData?.allStoreData))
 
 const callInfo = reactive<{myTicket : number | null, timeToCall: number | null}>({
     myTicket: null,
@@ -19,25 +14,16 @@ const callInfo = reactive<{myTicket : number | null, timeToCall: number | null}>
 function setTicket(myTicket: number, timeToCall: number){
     callInfo.myTicket = myTicket
     callInfo.timeToCall = timeToCall
-
-    console.log(callInfo);
 }
 
 onMounted(() => {
     const storeID = localStorage.getItem("storeID");
+
     if(storeID){
         data.setLoading();
         data.getStoreData(storeID)
     }
-
-    // allStoreData.getAllStoreData();
 })
-
-// watchEffect(() => {
-//     if(data.initLoading){
-     
-//     }
-// })
 
 </script>
 

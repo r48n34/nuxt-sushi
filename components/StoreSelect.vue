@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { NSelect } from 'naive-ui'
-
 import { useAllStoreDataStore } from '~~/store/allStoreDataStore';
 import { useSingleStoreDataStore } from '~~/store/singleStoreDataStore';
 
-
-const value = ref(null)
+const value = ref<null | number>(null); // Selected store id
 
 const singleStore = useSingleStoreDataStore()
 const allStoreData = useAllStoreDataStore()
@@ -32,12 +30,11 @@ watchEffect(async () => {
     }
 
     singleStore.setLoading();
-    localStorage.setItem("storeID", value.value)
-    singleStore.getStoreData(value.value)
+    localStorage.setItem("storeID", value.value+"");
+    singleStore.getStoreData(value.value);
 })
-
-
 </script>
+
 
 <template>
     <n-select v-model:value="value" :options="storeList"/>
