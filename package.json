@@ -13,7 +13,8 @@
     "@types/uuid": "^9.0.1",
     "@vueuse/core": "^9.13.0",
     "@vueuse/nuxt": "^9.13.0",
-    "nuxt": "^3.2.3"
+    "nuxt": "^3.2.3",
+    "vue3-toastify": "^0.1.1"
   },
   "dependencies": {
     "@css-render/vue3-ssr": "^0.15.12",

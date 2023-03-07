@@ -16,6 +16,18 @@ function setTicket(myTicket: number, timeToCall: number){
     callInfo.timeToCall = timeToCall
 }
 
+watch( data ,() => {
+    if(
+        callInfo.myTicket
+        && callInfo.timeToCall
+        && data.storeData
+        && callInfo.myTicket - data.storeData.singleStoreQueue.boothQueue[0] <= callInfo.timeToCall
+    ){
+        useNuxtApp().$toast.info('Your ticket is near!');
+        return
+    }
+})
+
 onMounted(() => {
     const storeID = localStorage.getItem("storeID");
 
@@ -92,9 +104,24 @@ onMounted(() => {
                 <InputTicket @setTicket="setTicket" />
             </n-divider>
 
-            <h5 v-if="callInfo.myTicket">
-                {{ callInfo.myTicket }}
-            </h5>
+            <template v-if="callInfo.myTicket">
+                <n-grid x-gap="12" :cols="2">
+                
+                <n-gi class="grid-items">
+                    <n-statistic label="Your ticket">
+                        {{ callInfo.myTicket }}
+                    </n-statistic> 
+                </n-gi>
+
+                <n-gi class="grid-items">
+                    <n-statistic label="Left">
+                        {{ callInfo.myTicket - data.storeData.singleStoreQueue.boothQueue[0] }}
+                    </n-statistic> 
+                </n-gi>
+              
+            </n-grid>
+
+            </template>
 
         </template>
 
