@@ -30,7 +30,7 @@ onMounted(() => {
         data.getStoreData(storeID)
     }
 
-    allStoreData.getAllStoreData();
+    // allStoreData.getAllStoreData();
 })
 
 // watchEffect(() => {
