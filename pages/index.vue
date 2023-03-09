@@ -3,11 +3,13 @@ import { onMounted } from 'vue'
 import { darkTheme, NConfigProvider, NDivider, NStatistic, NModal, NCard, NSpin } from 'naive-ui'
 import { NGrid, NGi, NH2, NH4 } from 'naive-ui'
 import { useSingleStoreDataStore } from '~~/store/singleStoreDataStore';
+import { useVibrate } from '@vueuse/core'
 
 useHead({
   titleTemplate: () => `Sushi - Home`,
 });
 
+const { vibrate, isSupported } = useVibrate({ pattern: [300, 100, 300] })
 const data = useSingleStoreDataStore()
 
 const callInfo = reactive<{myTicket : number | null, timeToCall: number | null}>({
@@ -28,6 +30,7 @@ watch( data ,() => {
         && callInfo.myTicket - data.storeData.singleStoreQueue.boothQueue[0] <= callInfo.timeToCall
     ){
         useNuxtApp().$toast.info('Your ticket is near!');
+        isSupported && vibrate()
         return
     }
 })
