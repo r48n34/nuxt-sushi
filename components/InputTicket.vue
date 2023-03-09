@@ -16,7 +16,8 @@ const selectOptions = [2,5,10,15,20,25,30,50].map( v => {
 })
 
 function setOutsideNum(){
-    emit('setTicket', internalTicketNumber, internalTicketCall);
+    emit('setTicket', internalTicketNumber.value, internalTicketCall.value);
+
     showModal.value = false
 }
 

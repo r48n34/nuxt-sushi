@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { darkTheme, NConfigProvider, NDivider, NStatistic, NModal, NCard, NSpin } from 'naive-ui'
-import { NGrid, NGi, NH2, NH4 } from 'naive-ui'
+import { NGrid, NGi, NH2, NH4, NButton } from 'naive-ui'
 import { useSingleStoreDataStore } from '~~/store/singleStoreDataStore';
 import { useVibrate } from '@vueuse/core'
 
@@ -9,7 +9,8 @@ useHead({
   titleTemplate: () => `Sushi - Home`,
 });
 
-const { vibrate, isSupported } = useVibrate({ pattern: [300, 100, 300] })
+
+const { vibrate, isSupported } = useVibrate({ pattern: [600, 100, 600] })
 const data = useSingleStoreDataStore()
 
 const callInfo = reactive<{myTicket : number | null, timeToCall: number | null}>({
@@ -20,6 +21,11 @@ const callInfo = reactive<{myTicket : number | null, timeToCall: number | null}>
 function setTicket(myTicket: number, timeToCall: number){
     callInfo.myTicket = myTicket
     callInfo.timeToCall = timeToCall
+}
+
+function clearTicket(){
+    callInfo.myTicket = null
+    callInfo.timeToCall = null
 }
 
 watch( data ,() => {
@@ -119,28 +125,40 @@ onMounted(() => {
               
             </n-grid>
 
-            <n-divider title-placement="center">
-                <InputTicket @setTicket="setTicket" />
-            </n-divider>
+            <template v-if="data.storeData.singleStoreQueue.boothQueue.length >= 3">
 
-            <template v-if="callInfo.myTicket">
-                <n-grid x-gap="12" :cols="2">
+                <n-divider title-placement="center">
+                    <InputTicket @setTicket="setTicket" />
+                </n-divider>
+    
+                <template v-if="callInfo.myTicket">
+                    <div style="text-align: right;">
+                        <n-button size="small" strong secondary circle type="info" @click="clearTicket">
+                        <template #icon>
+                            <Icon name="fluent-emoji-flat:cross-mark"/> 
+                        </template>
+                        </n-button>
+                    </div>
                 
-                <n-gi class="grid-items">
-                    <n-statistic label="Your ticket">
-                        {{ callInfo.myTicket }}
-                    </n-statistic> 
-                </n-gi>
-
-                <n-gi class="grid-items">
-                    <n-statistic label="Left">
-                        {{ callInfo.myTicket - data.storeData.singleStoreQueue.boothQueue[0] }}
-                    </n-statistic> 
-                </n-gi>
-              
-            </n-grid>
+                    <n-grid x-gap="12" :cols="2">
+                        
+                        <n-gi class="grid-items">
+                            <n-statistic label="Your ticket">
+                                {{ callInfo.myTicket }}
+                            </n-statistic> 
+                        </n-gi>
+        
+                        <n-gi class="grid-items">
+                            <n-statistic label="Left">
+                                {{ callInfo.myTicket - data.storeData.singleStoreQueue.boothQueue[0] }}
+                            </n-statistic> 
+                        </n-gi>
+                    
+                    </n-grid>
+                </template>
 
             </template>
+
 
         </template>
 

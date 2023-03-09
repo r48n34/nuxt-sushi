@@ -3,8 +3,8 @@ import { Data } from '~~/interface/sushiInterface';
 
 export const useSingleStoreDataStore = defineStore('singleStoreDataStore', () => {
     
-    const storeData = ref<null | Data>(null)
-    const lastUpdate = ref<Date>(new Date())
+    const storeData   = ref<null | Data>(null)
+    const lastUpdate  = ref<Date>(new Date())
     const initLoading = ref<boolean>(false)
 
     let interviewEvent: any = null;
