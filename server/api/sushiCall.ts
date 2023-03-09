@@ -50,7 +50,6 @@ export default defineEventHandler( async (event) => {
 
         return { status: true, data: { errorMsg: "", allStoreData } }
        
-
     }
     catch(err: any){
         console.log(err)

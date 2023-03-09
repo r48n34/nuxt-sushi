@@ -23,11 +23,11 @@ const data = useSingleStoreDataStore()
             </n-h1>
     
             <n-h4 style="margin: 0;">
-              Last Update: {{ data.lastUpdate.toTimeString().slice(0,9) }}
+              <Icon name="fluent-emoji-flat:eight-oclock" style="margin-right: 5px;"/> Last Update: {{ data.lastUpdate.toTimeString().slice(0,9) }}
             </n-h4>
 
             <n-h4 style="margin: 0;">
-              Current: {{ new Date(timestamp).toTimeString().slice(0,9) }}
+              <Icon name="fluent-emoji-flat:alarm-clock" style="margin-right: 5px;"/> Current: {{ new Date(timestamp).toTimeString().slice(0,9) }}
             </n-h4>
         </template>
 

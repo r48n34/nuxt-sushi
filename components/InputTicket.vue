@@ -8,7 +8,7 @@ const showModal = ref(false)
 const internalTicketNumber = ref(500)
 const internalTicketCall = ref(10)
 
-const selectOptions = [2,5,10,15,20,25,30].map( v => {
+const selectOptions = [2,5,10,15,20,25,30,50].map( v => {
     return {
         label: v+"",
         value: v+"",
@@ -24,7 +24,7 @@ function setOutsideNum(){
 
 <template>
     <n-button size="small" strong secondary round type="primary" @click="showModal = true">
-      + Ticket
+        <Icon name="fluent-emoji-flat:admission-tickets" style="margin-right: 5px;"/> Ticket 
     </n-button>
 
     <n-modal 
@@ -32,7 +32,7 @@ function setOutsideNum(){
       style="width: 600px"
       class="custom-card"
       preset="card"
-      title="Modal"
+      title="Your ticket"
       :bordered="false"
       size="huge"
     >
@@ -49,7 +49,7 @@ function setOutsideNum(){
 
         <br/>
         <n-text depth="3">
-            Time to call
+            Left time to call
         </n-text>
         <n-select v-model:value="internalTicketCall" :options="selectOptions" />
 

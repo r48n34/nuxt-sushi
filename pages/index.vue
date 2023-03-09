@@ -4,6 +4,10 @@ import { darkTheme, NConfigProvider, NDivider, NStatistic, NModal, NCard, NSpin 
 import { NGrid, NGi, NH2, NH4 } from 'naive-ui'
 import { useSingleStoreDataStore } from '~~/store/singleStoreDataStore';
 
+useHead({
+  titleTemplate: () => `Sushi - Home`,
+});
+
 const data = useSingleStoreDataStore()
 
 const callInfo = reactive<{myTicket : number | null, timeToCall: number | null}>({
@@ -74,7 +78,7 @@ onMounted(() => {
         <template v-if="data.storeData">
 
             <n-divider title-placement="center">
-                General Info
+                General Info <Icon name="fluent-emoji-flat:identification-card" style="margin-left: 5px;"/>
             </n-divider>
 
             <n-grid x-gap="12" :cols="2">
@@ -96,7 +100,7 @@ onMounted(() => {
             </n-grid>
 
             <n-divider title-placement="center">
-                Queue ticket
+                Queue ticket <Icon name="fluent-emoji-flat:ticket" style="margin-left: 5px;"/>
             </n-divider>
 
             <n-grid x-gap="12" :cols="3">

@@ -16,11 +16,12 @@ onMounted(() => {
 const storeList = computed( () => allStoreData && !!allStoreData.allStoreData
     ? allStoreData.allStoreData.map( v => {
         return {
-            label: v.name,
-            value: v.id
+            label: `${v.storeStatus === "OPEN" ? "✅" : "🛑"} ${v.name}`,
+            value: v.id,
+            disabled: v.storeStatus !== "OPEN"
         }
     })
-    : [{label : "Loading...", value: -1 }]
+    : [{label : "Loading...", value: -1, disabled: true }]
 );
 
 

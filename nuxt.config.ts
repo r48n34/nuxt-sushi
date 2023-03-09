@@ -10,7 +10,8 @@ export default defineNuxtConfig({
         '@nuxtjs/color-mode',
         '@vueuse/nuxt',
         '@sidebase/nuxt-session',
-        '@kevinmarrec/nuxt-pwa'
+        '@kevinmarrec/nuxt-pwa',
+        'nuxt-icon'
     ],
     build: {
         transpile:
@@ -22,6 +23,14 @@ export default defineNuxtConfig({
                 '@juggle/resize-observer'
               ]
             : ['@juggle/resize-observer']
+    },
+    pwa: {
+      manifest: {
+        name: 'Nuxt Sushi',
+        short_name : 'Sushi',
+        background_color: '#3b3b3b',
+        lang: 'en',
+      }
     },
     vite: {
         optimizeDeps: {
