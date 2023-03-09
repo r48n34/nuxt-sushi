@@ -37,6 +37,14 @@ export const useSingleStoreDataStore = defineStore('singleStoreDataStore', () =>
         initLoading.value = false
 
     }
+
+    function clearSingleStoreData(){
+        storeData.value = null
+        initLoading.value = false
+
+        !!interviewEvent && clearInterval(interviewEvent)
+        localStorage.removeItem("storeID")
+    }
     
-    return { getStoreData, storeData, lastUpdate, initLoading, setLoading }
+    return { getStoreData, storeData, lastUpdate, initLoading, setLoading, clearSingleStoreData }
 })
