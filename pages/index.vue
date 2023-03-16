@@ -4,13 +4,12 @@ import { darkTheme, NConfigProvider, NDivider, NStatistic, NModal, NCard, NSpin 
 import { NGrid, NGi, NH2, NH4, NButton } from 'naive-ui'
 import { useSingleStoreDataStore } from '~~/store/singleStoreDataStore';
 import { useVibrate } from '@vueuse/core'
-import { generatePlayer } from '~~/utils/insomnia'
+// import { generatePlayer } from '~~/utils/insomnia'
 
 useHead({
   titleTemplate: () => `Sushi - Home`,
 });
 
-const inso = ref<HTMLVideoElement | null>(null)
 const { vibrate, isSupported } = useVibrate({ pattern: [600, 100, 600] })
 const data = useSingleStoreDataStore()
 
@@ -20,15 +19,11 @@ const callInfo = reactive<{myTicket : number | null, timeToCall: number | null}>
 })
 
 function setTicket(myTicket: number, timeToCall: number){
-    inso.value && inso.value.play();
-
     callInfo.myTicket = myTicket
     callInfo.timeToCall = timeToCall
 }
 
 function clearTicket(){
-    inso.value && inso.value.pause();
-
     callInfo.myTicket = null
     callInfo.timeToCall = null
 }
@@ -48,7 +43,6 @@ watch( data ,() => {
 
 onMounted(() => {
     const storeID = localStorage.getItem("storeID");
-    inso.value = generatePlayer();
     
     if(storeID){
         data.setLoading();
@@ -109,7 +103,7 @@ onMounted(() => {
                     <n-statistic label="Queue wait">
                         <NH2 style="font-size: 3rem;">
                         {{ data.storeData.allStoreData.waitingGroup }}
-                    </NH2>
+                        </NH2>
                     </n-statistic>             
                 </n-gi>
             </n-grid>
@@ -124,9 +118,9 @@ onMounted(() => {
                     class="grid-items"
                     v-for="v in data.storeData.singleStoreQueue.boothQueue"
                 >
-                    <n-h2>
+                    <NH2 style="font-size: 1.8rem;">
                         {{ v }}
-                    </n-h2>
+                    </NH2>
                 </n-gi>
               
             </n-grid>
@@ -164,7 +158,6 @@ onMounted(() => {
                 </template>
 
             </template>
-
 
         </template>
 
