@@ -8,6 +8,9 @@ import { useVibrate } from '@vueuse/core'
 
 useHead({
   titleTemplate: () => `Sushi - Home`,
+  meta: [
+    { name: 'google-site-verification', content: 'MSmy-J4XDNXLBlFKqvooWG7RzHPvXmjhSo1BWtgF40E' }
+  ],
 });
 
 const { vibrate, isSupported } = useVibrate({ pattern: [600, 100, 600] })
